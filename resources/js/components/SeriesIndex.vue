@@ -17,8 +17,6 @@
 </template>
 
 <script>
-var counter = 0;
-var imagesArr = [];
 export default {
   data: function () {
     return {
@@ -36,16 +34,9 @@ export default {
     // 1 -> 2
     axios.get("https://api.pokemontcg.io/v1/sets").then((resp) => {
       this.Sets = resp.data.sets;
-      console.log(resp.data.sets);
       this.Sets.map((set) => this.Images.push(set.logoUrl));
       this.Sets.map((set) => this.SetCodes.push(set.code))
     });
-  },
-
-  methods: {
-    setLogo(set) {
-      counter++;
-    },
   },
 };
 </script>

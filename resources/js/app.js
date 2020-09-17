@@ -21,6 +21,7 @@ window.Vue = require("vue");
 
 Vue.component("series-index", require("./components/SeriesIndex.vue").default);
 Vue.component('sets', require('./components/Sets.vue').default);
+Vue.component('card', require('./components/Card.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -28,5 +29,5 @@ Vue.component('sets', require('./components/Sets.vue').default);
  */
 
 const app = new Vue({
-    el: "#app"
+    el: "#app",
 });

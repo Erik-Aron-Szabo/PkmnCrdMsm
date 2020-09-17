@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/{setname}', 'SetController@showSet');
+//Route::get('/{setname}', 'SetController@showSet');
+Route::get('/{setcode}', 'CardController@displayAllCardsForSet');
+
+Route::get('/cards/{cardid}', 'CardController@showCard');

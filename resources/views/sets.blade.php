@@ -3,9 +3,7 @@
 
 @section('content')
 <a class="btn btn-primary" href="/">Back</a>
-<h2>Cards for Sets </h2>
-<p>Lists all cards for the set</p>
-<?php echo $set_code ?>
-<sets></sets>
+<br><br>
+<sets set_code="{{$set_code}}"></sets>
 
 @endsection

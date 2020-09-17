@@ -1,11 +1,11 @@
 <template>
-  <div class="card">
-    <h4>Cards for {{ set_name }}</h4>
-    <ul class="list-group-flush list-group">
-      <li class="list-group-item">
-        <button class="btn-primary btn">
-          <p>{{ setCards.name }}</p>
-        </button>
+  <div class="ulblock">
+    <!-- <h4>Cards for {{ set_code }}</h4> -->
+    <ul id="double">
+      <li v-for="card in setCards" :key="card">
+        <a :href="'/cards/' + card.id">
+        <img :src="card.imageUrl" :alt="card.name" />
+        </a>
       </li>
     </ul>
   </div>
@@ -13,21 +13,52 @@
 
 <script>
 export default {
-  props: ["set_name"],
+  props: ["set_code"],
   data() {
     return {
-      setName: set_name,
-      setCards: null,
+      setCode: this.set_code,
+      setCards: [],
     };
   },
 
+  methods: {
+    loadCards: async function () {
+      axios
+        .get("https://api.pokemontcg.io/v1/cards?setCode=" + this.set_code)
+        .then((resp) => {
+          this.setCards = resp.data.cards;
+        });
+    },
+  },
+
   mounted() {
-    axios.get("https://api.pokemontcg.io/v1/sets/" + set_name).then((resp) => {
-      this.setCards = resp.data.name;
-    });
+    this.loadCards();
   },
 };
 </script>
 
 <style>
+.ulblock {
+  padding: 0;
+  margin: 0;
+}
+ul {
+  column-count: 4;
+  list-style-type: none;
+  widows: 100%;
+  margin: 2px;
+}
+
+img {
+  align-content: center;
+  margin-bottom: 5px;
+}
+/* 
+#double li {
+  width: 50%;
+} */
+
+li {
+  float: left;
+}
 </style>
